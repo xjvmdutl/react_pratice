@@ -1,5 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';//컴포넌트의
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';//PropsTypes를 사용하기 위한 import
+
 
 //일반 함수의 경우 자신이 종속된 객체를 this로 가리키며, 화살표 함수는 자신이 종속된 인스턴스를 가리킨다.
 function twice(value) {
@@ -50,18 +51,72 @@ const triple = (value) => value *3;
 //     );
 // };
 //함수의 파라미터가 객체라면 그값을 바로 비구조화하여 사용하는것
-const MyComponent = ({name,children}) => {
-    return (
-        <div>
-            안녕하세요 제 이름은 {name}입니다.
-             <br />
-             children값은 {children}입니다.
-        </div>
-    );
-}
+// const MyComponent = ({name,children,favoriteNumber}) => {
+//     return (
+//         <div>
+//             안녕하세요 제 이름은 {name}입니다.
+//              <br />
+//              children값은 {children}입니다.
+//              <br />
+//              제가 좋아하는 숫자는 {favoriteNumber} 입니다.
+//         </div>
+//     );
+//  }
+// //propsTypes를 통한 props검증
+// //컴포넌트의 필수 props를 지정하거나 props의 타입을 지정할떄 사용
+// MyComponent.propTypes = {
+//     name : PropTypes.string//name값은 반드시 문자열 형태로 전달
+//     ,favoriteNumber : PropTypes.number.isRequired//propsTypes를 지정하지 않았을때 경고 메시지를 띄어준다.
+// };
 
-//default props
-MyComponent.defaultProps = {
-    name : '기본 이름' 
-};
+// //default props
+// MyComponent.defaultProps = {
+//     name : '기본 이름' 
+// };
+// export default MyComponent;
+// 클래스형 컴포넌트로 변경
+// class MyComponent extends Component {
+//     render(){
+//         const {name,favoriteNumber,children} = this.props;//비구조화 할당
+//         return (
+//             <div>
+//                안녕하세요 제 이름은 {name}입니다.
+//               <br />
+//               children값은 {children}입니다.
+//               <br />
+//               제가 좋아하는 숫자는 {favoriteNumber} 입니다.
+//             </div>
+//         );
+//     }
+// }
+// MyComponent.defaultProps = {
+//     name : '기본 이름'
+// };
+// MyComponent.propTypes = {
+//     name : PropTypes.string,
+//     favoriteNumber : PropTypes.number.isRequired
+// };
+// export default MyComponent;
+//클래스형 컴포넌트에서 props사용=> 내부에서 사용
+class MyComponent extends Component {
+    static defaultProps = {
+        name : '기본 이름'
+    };
+    static propTypes ={
+        name : PropTypes.string,
+        favoriteNumber : PropTypes.number.isRequired
+    };
+    render(){
+        const {name,favoriteNumber,children} = this.props;//비구조화 할당
+        return (
+            <div>
+               안녕하세요 제 이름은 {name}입니다.
+              <br />
+              children값은 {children}입니다.
+              <br />
+              제가 좋아하는 숫자는 {favoriteNumber} 입니다.
+            </div>
+        );
+    }
+}
 export default MyComponent;

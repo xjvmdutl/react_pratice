@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import React, {Component} from 'react';
 import MyComponent from './MyComponent';
+import Counter from './Counter';
+import Say from './Say';
 
 // 컴포넌트 선언
 //방법 2가지 1. 함수형 2. class형(차이점 : 클레스형 컴포넌트인 경우 state 기능및 라이프 사이클 기능 사용 가능, 임의 메소드 정의 가능)
@@ -36,9 +38,20 @@ import MyComponent from './MyComponent';
 
 //태그 사이의 내용을 보여주는 children
 // 컴포넌트 태그 사이의 내용을 보여주는 props가존재 = children
-//
-const App = () =>{
-  return <MyComponent>리액트</MyComponent>;
-}
+//MyComponent 태그 사이에 작성한 리액트 문자열을  MyComponent 내부에서 보여주려면 props.children 값을 보여주어야 한다.
 
+// const App = () =>{
+//   return <MyComponent>리액트</MyComponent>;
+// }
+// const App = () =>{
+//   //return <MyComponent name = {2}></MyComponent>;//크롬 콘솔 에러 => propsType이 문자열이 아니기 때문
+//   return <MyComponent name = '리액트' favoriteNumber = {2}></MyComponent>;
+// }
+// export default App;
+// const App = () =>{
+//   return <Counter />;
+// }
+const App = () =>{
+  return <Say />;
+}
 export default App;
