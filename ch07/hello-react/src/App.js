@@ -8,6 +8,7 @@ function getRandomColor() {
 
 class App extends Component {
   state = {
+    
     color: "#000000",
   };
   handleClick = () => {
